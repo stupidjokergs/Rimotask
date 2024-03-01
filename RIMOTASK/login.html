@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rimotask Login/Sign Up</title>
+  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
+  <link rel="stylesheet" href="./css/stylelogin.css">
+</head>
+<body>
+<div class="wrapper">
+  <div class="login_box" id="loginBox">
+    <div class="login-header">
+      <span>Login</span>
+    </div>
+
+    <div class="input_box">
+      <input type="text" id="user" class="input-field" maxlength="8" required>
+      <label for="user" class="label">Username</label>
+      <i class="bx bx-user icon"></i>
+    </div>
+
+    <div class="input_box">
+      <input type="password" id="pass" class="input-field" minlength="8" required>
+      <label for="pass" class="label">Password</label>
+      <i class="bx bx-lock-alt icon"></i>
+    </div>
+
+    <div class="input_box">
+      <!-- Change type to "submit" -->
+      <input type="submit" class="input-submit" value="Login" id="loginButton" onclick="login()" disabled>
+    </div>
+
+    <div class="register">
+      <span>Don't have an account? <a href="#" onclick="toggleForm()">Register</a></span>
+    </div>
+  </div>
+
+  <div class="signup_box" id="signupBox" style="display: none;">
+    <div class="login-header">
+      <span>Sign Up</span>
+    </div>
+
+    <form method="post" action="activation.html" id="signupForm"> <!-- Added id="signupForm" -->
+      <div class="input_box">
+        <input type="text" name="username" id="username" class="input-field" maxlength="16" placeholder="Username" required>
+      </div>
+
+      <div class="input_box">
+        <input type="text" name="phone" id="phone" class="input-field" minlength="10" maxlength="10" placeholder="Phone Number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+      </div>
+
+      <div class="input_box">
+        <input type="text" name="referral" id="referral" class="input-field" maxlength="16" placeholder="Referral Code"required>
+      </div>
+
+      <div class="input_box">
+        <input type="text" name="email" id="email" class="input-field" maxlength="50" placeholder="Email address" required>
+      </div>
+
+      <div class="input_box">
+        <input type="password" name="password" id="password" class="input-field" minlength="8" maxlength="16" placeholder="Password" required>
+        <span class="password-toggle" onclick="togglePasswordVisibility('signup')">Show</span>
+      </div>
+
+      <div class="terms_conditions">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">I accept the terms and conditions.</label>
+      </div>
+
+      <div class="input_box">
+        <input type="submit" name="signupButton" class="input-submit" value="Sign Up" disabled>
+      </div>
+    </form>
+
+    <div class="register">
+      <span>Already have an account? <a href="#" onclick="toggleForm()">Login</a></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleForm() {
+    var loginBox = document.getElementById("loginBox");
+    var signupBox = document.getElementById("signupBox");
+
+    if (loginBox.style.display === "none") {
+      loginBox.style.display = "block";
+      signupBox.style.display = "none";
+    } else {
+      loginBox.style.display = "none";
+      signupBox.style.display = "block";
+    }
+  }
+
+  function togglePasswordVisibility(formType) {
+    var passwordInput = document.getElementById("password");
+    var passwordToggle = document.querySelector(".password-toggle");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      passwordToggle.textContent = "Hide";
+    } else {
+      passwordInput.type = "password";
+      passwordToggle.textContent = "Show";
+    }
+  }
+
+  function openActivationPage() {
+    // This function is now called when the form is submitted
+  }
+
+  function checkValidity() {
+    var inputs = document.querySelectorAll('.signup_box input');
+    var isValid = true;
+    inputs.forEach(input => {
+      if (!input.checkValidity()) {
+        isValid = false;
+      }
+    });
+    if (!document.getElementById("terms").checked) {
+      isValid = false;
+    }
+    document.querySelector('input[name="signupButton"]').disabled = !isValid;
+  }
+
+  document.querySelectorAll('.signup_box input').forEach(item => {
+    item.addEventListener('input', checkValidity);
+  });
+
+  function login() {
+    var username = document.getElementById("user").value;
+    var password = document.getElementById("pass").value;
+   // Check if the entered username and password match any of the 100 combinations
+   switch (username) {
+      case "user1":
+        if (password === "password1") {
+          window.location.href = "rimotaskaccount.html";
+        }
+        break;
+      case "user2":
+        if (password === "password2") {
+          window.location.href = "rimotaskaccount.html";
+        }
+        break;
+      //// Check if the entered username and password match any of the 100 combinations
+    switch (username) {
+      case "Rimotaskke1":
+        if (password === "2023rimotask") {
+          window.location.href = "rimotaskaccount.html";
+        }
+        break;
+      case "Rimotaskke2":
+        if (password === "2023rimotask2") {
+          window.location.href = "rimotaskaccount.html";
+        }
+        break;     
+      case "Rimotaskke3":
+        if (password === "2023rimotask3") {
+          window.location.href = "rimotaskaccount.html";
+        }
+        break;
+      default:
+        window.location.href = "loginloader.html";
+        break;
+    }
+      case "Rimotask4":
+        if (password === "password100") {
+          window.location.href = "rimotaskaccount.html";
+        }
+        break;
+      case "admin":
+        if (password === "adminboss.A") {
+          window.location.href = "admin.html";
+        }
+        break;
+      default:
+        window.location.href = "signuprequest.html";
+        break;
+    }
+}
+
+// Enable login button only when both username and password are filled
+document.getElementById("user").addEventListener("input", function() {
+  var username = this.value.trim();
+  var password = document.getElementById("pass").value.trim();
+  document.getElementById("loginButton").disabled = !(username && password);
+});
+
+document.getElementById("pass").addEventListener("input", function() {
+  var username = document.getElementById("user").value.trim();
+  var password = this.value.trim();
+  document.getElementById("loginButton").disabled = !(username && password);
+});
+</script>
+
+</body>
+</html>

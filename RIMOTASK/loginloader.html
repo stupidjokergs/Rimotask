@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Loader</title>
+  <link rel="stylesheet" href="./css/loginloader.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .loader-container {
+      text-align: center;
+    }
+
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #3498db;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    p {
+      color: #333;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container">
+    <div class="loader"></div>
+    <p>Please wait while we process your request...</p>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "rimotaskaccount.html";
+    }, 2000);
+
+    const sqlite3 = require('sqlite3').verbose();
+    const bcrypt = require('bcrypt');
+
+    // Function for handling login
+    const handleLogin = (login_username, login_password) => {
+      const db = new sqlite3.Database('example.db', (err) => {
+        if (err) {
+          console.error("Error connecting to the database:", err.message);
+          return;
+        }
+        console.log("Connected to the database.");
+      });
+
+      // Retrieve user from database
+      db.serialize(() => {
+        db.get("SELECT * FROM users WHERE username = ?", [login_username], (err, user) => {
+          if (err) {
+            console.error("Error querying the database:", err.message);
+            return;
+          }
+          if (user && bcrypt.compareSync(login_password, user.password)) {
+            console.log("Login successful!");
+            // Redirect logic here (e.g., using Express.js)
+          } else {
+            console.log("Invalid username or password! Please try again.");
+          }
+        });
+      });
+
+      // Close database connection
+      db.close((err) => {
+        if (err) {
+          console.error("Error closing the database connection:", err.message);
+        }
+        console.log("Database connection closed.");
+      });
+    };
+
+    // Example usage:
+    // Replace 'example_username' and 'example_password' with actual form input values
+    const login_username = 'example_username';
+    const login_password = 'example_password';
+    handleLogin(login_username, login_password);
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rimotask Account</title>
+  <link rel="stylesheet" href="/css/rimotaskaccount.css">
+</head>
+<body>
+  <header>
+    <h1>Rimotask Account</h1>
+    <button id="changePasswordButton">Change Password</button>
+    <button id="signOutButton" onclick="window.location.href = 'index.html'">Sign Out</button>
+    <div class="banner">
+      <div class="wallet-details">
+        <h2>My Wallet</h2>
+        <button id="balanceButton" onclick="window.location.href = 'balance.html'">Balance</button>
+      </div>
+      <button id="withdrawButton" onclick="window.location.href = 'withdraw.html'">Withdraw</button>
+      <p class="withdrawal-info">Withdrawal minimum: $1000</p>
+    </div>
+  </header>
+
+  <section class="earning-section">
+    <h2>Earnings</h2>
+    <!-- Display type of earnings here -->
+  </section>
+
+  <section class="referral-section">
+    <h2>Referral</h2>
+    <p><a href="referral.html">Refer a friend</a></p>
+  </section>
+
+  <button id="startEarningButton" onclick="window.location.href = 'tasks.html'">Start Earning</button>
+</body>
+</html>

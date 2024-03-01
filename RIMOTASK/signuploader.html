@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up Loader</title>
+  <link rel="stylesheet" href="./css/signuploader.css">
+</head>
+<body>
+<div class="loader-wrapper">
+  <div class="loader"></div>
+  <p>Signing you up...</p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const signupForm = document.getElementById("signupForm");
+  
+    signupForm.addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+  
+      // Get form inputs
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+  
+      // Client-side validation
+      if (username.trim() === "" || password.trim() === "") {
+        alert("Please enter both username and password.");
+        return;
+      }
+  
+      // Prepare data to send to server
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("password", password);
+  
+      // Send data to server
+      fetch("login.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error("Network response was not ok.");
+        }
+      })
+      .then(data => {
+        // Check server response
+        if (data.trim() === "success") {
+          // Redirect to activation.html
+          window.location.href = "activation.html";
+        } else {
+          // Display error message
+          alert(data);
+        }
+      })
+      .catch(error => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+    });
+  });
+</script>
+</body>
+</html>

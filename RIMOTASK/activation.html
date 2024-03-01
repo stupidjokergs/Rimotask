@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Activation</title>
+<link rel="stylesheet" href="./css/activationstyle.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+
+<h2>M-Pesa Payment Activation</h2>
+
+<!-- Statement above the image -->
+<div class="scan-text">Scan to initialize payment using mpesa or safaricom app or manually pay to +254792706501</div>
+
+<!-- Image container -->
+<div class="qr-code-container">
+    <img src="images/mpesa QR.jpg" alt="M-Pesa QR Code" class="qr-code">
+</div>
+
+<form id="paymentForm">
+    <label for="mpesaCode">M-Pesa Code:</label><br>
+    <input type="text" id="mpesaCode" name="mpesaCode" required><br><br>
+
+    <label for="time">Time of Payment:</label><br>
+    <input type="time" id="time" name="time" required><br><br>
+
+    <label for="date">Date of Payment:</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="phoneNumber">Phone Number:</label><br>
+    <input type="tel" id="phoneNumber" name="phoneNumber" required><br><br>
+
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<!-- Loading bar -->
+<div class="progress-bar">
+    <div class="progress" id="progress"></div>
+</div>
+<div class="loading-text" id="loadingText"></div>
+
+<!-- Login button -->
+<button class="login-button" onclick="redirectToLogin()">Login</button>
+
+<script>
+function submitForm() {
+    // Check if all fields are filled
+    var form = document.getElementById("paymentForm");
+    if (form.checkValidity()) {
+        // Collect form data
+        var formData = new FormData(form);
+
+        // Send form data to the server using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "submit.php", true); // Replace "submit.php" with the URL of your server-side script
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Show loading bar
+                var progressBar = document.getElementById("progress");
+                var loadingText = document.getElementById("loadingText");
+                progressBar.style.width = '100%';
+                loadingText.innerHTML = 'Submission Complete. Please login.';
+                // Show login button
+                var loginButton = document.querySelector(".login-button");
+                loginButton.style.display = "block";
+            }
+        };
+        xhr.send(formData);
+    } else {
+        // If form is not valid, show an error message
+        form.reportValidity();
+    }
+}
+
+function redirectToLogin() {
+    // Redirect to login page
+    window.location.href = 'login.html';
+}
+</script>
+
+</body>
+</html>

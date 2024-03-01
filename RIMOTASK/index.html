@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Rimotask - Unlocking Chances In An online Modern Way">
+  <title>RIMOTASK</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+  <a href="#" class="logo">Rimotask.</a>
+  <div class="bx bx-menu" id="menu-icon"></div>
+  <nav class="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#contact-us">Contact Us</a>
+    <span class="active-nav"></span>
+  </nav>
+</header>
+
+<section class="home" id="home">
+  <div class="home-content">
+    <h1>Welcome to <span>Rimotask</span></h1>
+    <div class="text-animate">
+      <h3>Unlocking Chances In An Online Modern Way</h3>
+    </div>
+    <p>Learn how to make money online while making it in simple steps.
+      Start today.
+    </p>
+    <div class="btn-box">
+      <a href="login.html" class="btn">Sign up</a>
+      <a href="login.html" class="btn">Log in</a>
+    </div>
+  </div>
+  <div class="home-sci">
+    <a href="#"><i class='bx bxl-facebook'></i></a>
+    <a href="https://wa.me/254792706501"><i class='bx bxl-whatsapp'></i></a>
+    <a href="#"><i class='bx bxl-instagram'></i></a>
+  </div>
+  <div class="home-imgHover"></div>
+</section>
+
+<section class="about" id="about">
+  <h2 class="heading">About <span>Us</span></h2>
+  <div class="about-img">
+    <img src="images/about.jpg" alt="">
+    <span class="circle-spin"></span>
+  </div>
+  <div class="about-content">
+    <h3>PEOPLES CHOICE</h3>
+    <p>With over 250000+ registered and active online Investors all over the country.</p>
+    <div class="btn-box btns">
+      <a href="#" class="btn">Read More</a>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDC1istsmNrmphH_aSixYTCB4eU7HCVJiY",
+    authDomain: "rimotask-bb11a.firebaseapp.com",
+    projectId: "rimotask-bb11a",
+    storageBucket: "rimotask-bb11a.appspot.com",
+    messagingSenderId: "745402544033",
+    appId: "1:745402544033:web:4857f2e7a0ab5179d265e0",
+    measurementId: "G-RYW9FCGBH5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  // Add event listeners to the "Sign up" and "Log in" buttons
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".btn-box .btn:nth-child(1)").addEventListener("click", redirectToLogin);
+    document.querySelector(".btn-box .btn:nth-child(2)").addEventListener("click", redirectToLogin);
+  });
+// Function to redirect to login.html
+function redirectToLogin() {
+    window.location.href = "login.html";
+
+  }
+
+</script>
+
+</body>
+</html>
